@@ -1,0 +1,53 @@
+# CELL 4: Wide Binary Kinematics & Entropic Gravity Plot
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+G_N = 6.674e-11        # Newtonian Gravitational Constant
+M_solar = 1.989e30     # Solar mass in kg
+a_0 = 1.05e-10         # GVS derived MOND threshold
+AU_to_m = 1.496e11     # Astronomical Unit to meters
+
+# Assume a binary system with total mass of 2 Solar Masses
+M_tot = 2.0 * M_solar
+
+# Orbital separations from 100 AU to 100,000 AU (wide binaries)
+r_AU = np.logspace(2, 5, 200)
+r_m = r_AU * AU_to_m
+
+# 1. Newtonian Velocity: v = sqrt(G*M/r)
+v_newton = np.sqrt(G_N * M_tot / r_m)
+
+# 2. GVS Entropic Velocity (Deep MOND regime interpolation):
+# Accelerations below a_0 get boosted by sqrt(a_N * a_0)
+a_newton = G_N * M_tot / (r_m**2)
+a_gvs = np.where(a_newton < a_0, np.sqrt(a_newton * a_0), a_newton)
+v_gvs = np.sqrt(a_gvs * r_m)
+
+# Convert velocities to km/s for plotting
+v_newton_kms = v_newton / 1000.0
+v_gvs_kms = v_gvs / 1000.0
+
+plt.figure(figsize=(10, 6))
+plt.plot(r_AU, v_newton_kms, 'b--', linewidth=2, label='Strict Newtonian Drop-off')
+
+# CORRECTED LINE: Changed f-string to raw string (r) for proper LaTeX rendering
+plt.plot(r_AU, v_gvs_kms, 'g-', linewidth=3, label=r'GVS Entropic Gravity ($a_0 = 1.05 \times 10^{-10}$ m/s²)')
+
+# Mark the a_0 transition threshold
+r_transition = np.sqrt(G_N * M_tot / a_0) / AU_to_m
+plt.axvline(x=r_transition, color='k', linestyle=':', label='GVS $a_0$ Horizon Transition')
+
+plt.xscale('log')
+plt.yscale('log')
+plt.xlabel('Orbital Separation (AU)', fontsize=12)
+plt.ylabel('Orbital Velocity (km/s)', fontsize=12)
+plt.title('Wide Binary Kinematics: GVS Entropic Boost at low Accelerations', fontsize=14)
+plt.legend(loc='upper right', fontsize=11)
+plt.grid(True, which="both", ls="--", alpha=0.5)
+
+# Save and show
+plt.savefig('GVS_WideBinary_Plot.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+print("Plot saved as 'GVS_WideBinary_Plot.png'.")
