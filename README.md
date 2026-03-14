@@ -54,6 +54,27 @@ Running `GVS_Neutrino_Sector.py` simulates quantum random walks of unknots acros
 
 ---
 
+## 5. Cross-Disciplinary Applications: Biology & Physical Chemistry
+
+Because GVS relies on scale-invariant topological laws rather than parameterized quantum fields, macroscopic fluids with strong intermolecular geometries (like lipid bilayers and liquid water) behave as thermalized, macroscopic causal sets. The framework resolves three major anomalies in soft condensed matter physics:
+
+### A. Biological Homochirality (Prebiotic Symmetry Breaking)
+Standard models cannot mechanically explain why terrestrial biology exclusively uses L-amino acids. GVS demonstrates that the vacuum is intrinsically chiral because the weak nuclear force is strictly confined to a single face of the 3D causal simplex ($\sin^2 \theta_W = \eta/4$). L-amino acids geometrically align with this underlying vacuum torsion, experiencing lower elastodynamic drag than D-amino acids. Over deep time, this steady-state topological bias ($\sim 10^{-17}$ eV) acts as an algorithmic filter, triggering runaway L-polymerization via Frank-Kondepudi autocatalysis.
+
+### B. General Anesthesia (The Meyer-Overton Anomaly)
+The Meyer-Overton rule states that anesthetic potency correlates linearly with lipid solubility ($\log P$), defying standard receptor-binding models. GVS resolves this by modeling the neuronal lipid bilayer as a quasi-2D causal set. 
+
+Anesthetic molecules act as topological defects. Running `GVS_Lipid_Sim_Stub.py` simulates how these defects displace lipid nodes, functionally mapping $\log P$ to the GVS local packing fraction ($\eta_{local}$). When the lattice drops below a critical coordination valency ($z_{crit}$), it dynamically shatters—mechanically uncoupling the Hodgkin-Huxley ion channels and geometrically halting consciousness.
+
+![General Anesthesia Membrane Yield](GVS_Anesthesia_Yield.png)
+
+### C. The Hofmeister Series (Protein Solvation)
+For 130 years, continuum electrostatics have failed to predict the exact hierarchy of ion-induced protein precipitation (salting out) and solvation (salting in). GVS resolves this by modeling liquid water as a 4-coordinated ($z \approx 4$) thermalized causal set. 
+
+Ions are topological defects that restructure the water lattice's macroscopic yield stress. High charge-density ions (Kosmotropes) constrict the lattice ($\Delta \eta_{local} > 0$), forcing the rigidified fluid to physically expel (precipitate) the massive topological bounding surface of a protein. Low charge-density ions (Chaotropes) dilate the lattice ($\Delta \eta_{local} < 0$), creating a compliant fluid that easily solvates the protein knot.
+
+---
+
 ## Installation & Usage
 
 These simulation scripts are written in standard Python and are designed to be lightweight enough to run on personal machines or Google Colab environments.
