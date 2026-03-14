@@ -4,7 +4,7 @@ This repository contains the foundational Monte Carlo simulations and computatio
 
 GVS is a discrete geometric unification framework that abandons parameterized continuum models. It replaces the spacetime manifold with a shear-thickening, Poisson-sprinkled Causal Set (tetrahedral packing fraction $\eta \approx 0.8563$, coordination valency $z \approx 10.9$). Fundamental particles are modeled as localized topological defects (knots), and mass emerges fundamentally as the geometric drag integrated over the defect's topological surface area (Seifert surface).
 
-This codebase provides the numerical proofs for the first-principle derivations outlined in the associated theoretical manuscript [Link to arXiv preprint pending].
+This codebase provides the numerical proofs for the first-principle derivations outlined in the associated theoretical manuscript.
 
 ## Repository Contents
 
@@ -36,7 +36,7 @@ Running `GVS_Macroscopic_Validation.py` demonstrates how this discrete limit nat
 
 ## 3. Macroscopic Limits: Wide Binary Kinematics
 
-Gravity in GVS is the continuum limit of the discrete density gradient (Benincasa-Dowker curvature). At extreme low accelerations, the macroscopic entropic surface tension of the cosmological horizon ($a_0 = c H_0 / 2\pi \approx 1.05 \times 10^{-10}$ m/s$^2$) dominates local kinematics.
+Gravity in GVS is the continuum limit of the discrete density gradient (Benincasa-Dowker curvature). At extreme low accelerations, the macroscopic entropic surface tension of the cosmological horizon ($a_0 = c H_0 / 2\pi \approx 1.05 \times 10^{-10} m/s^{2}$) dominates local kinematics.
 
 The simulation proves that isolated wide binaries perfectly follow a modified entropic velocity plateau below the $a_0$ threshold, negating the need for dark matter halos.
 
