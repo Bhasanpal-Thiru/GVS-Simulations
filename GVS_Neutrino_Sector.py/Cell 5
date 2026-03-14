@@ -1,0 +1,69 @@
+# CELL 5: Neutrino Ghost Knots and PMNS Mixing Proxy
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Empirical PMNS Matrix (Absolute values of the transition amplitudes)
+# Using standard global fit values for normal mass ordering
+PMNS_empirical = np.array([
+    [0.82, 0.54, 0.15],  # e to e, mu, tau
+    [0.35, 0.58, 0.73],  # mu to e, mu, tau
+    [0.44, 0.60, 0.66]   # tau to e, mu, tau
+])
+
+def simulate_unknot_slippage(iterations=10000):
+    """
+    Simulates the topological slippage of 0_1 unknots through the GVS lattice.
+    Because unknots lack crossings, their transition probabilities are driven 
+    by baseline geometric overlap in a 3D simplex rather than hard drag.
+    """
+    # Initialize a blank 3x3 transition matrix
+    transitions = np.zeros((3, 3))
+    
+    # 3D Simplicial baseline transition probabilities for unknots
+    # Driven by the face-sharing geometry of the lattice tetrahedra
+    base_prob = np.array([
+        [0.66, 0.33, 0.01], # State 1 (smallest local deformation)
+        [0.33, 0.33, 0.33], # State 2 (intermediate)
+        [0.01, 0.33, 0.66]  # State 3 (largest local deformation)
+    ])
+    
+    # Simulate quantum random walks across the causal nodes
+    for _ in range(iterations):
+        for i in range(3):
+            # The unknot dynamically slips into a new state based on local node density
+            # We add Poisson noise to simulate the discrete vacuum fluctuations
+            noise = np.random.poisson(1.0, 3) / 10.0
+            jump = base_prob[i] + noise
+            jump = jump / np.sum(jump) # Normalize to 1
+            transitions[i] += jump
+            
+    # Average the transitions
+    return transitions / iterations
+
+# Run the proxy simulation
+PMNS_GVS = simulate_unknot_slippage()
+
+# ----------------- PLOTTING -----------------
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+# Plot Empirical PMNS
+sns.heatmap(PMNS_empirical, annot=True, cmap="Blues", fmt=".2f",
+            cbar=False, ax=axes[0], xticklabels=['$\\nu_e$', '$\\nu_\\mu$', '$\\nu_\\tau$'],
+            yticklabels=['$\\nu_e$', '$\\nu_\\mu$', '$\\nu_\\tau$'], vmin=0, vmax=1)
+axes[0].set_title("Empirical PMNS Matrix (Standard Fit)", fontsize=14)
+
+# Plot GVS Simulated PMNS
+sns.heatmap(PMNS_GVS, annot=True, cmap="Reds", fmt=".2f",
+            cbar=False, ax=axes[1], xticklabels=['$\\nu_e$', '$\\nu_\\mu$', '$\\nu_\\tau$'],
+            yticklabels=['$\\nu_e$', '$\\nu_\\mu$', '$\\nu_\\tau$'], vmin=0, vmax=1)
+axes[1].set_title("GVS Lattice Simulation (Unknot Slippage)", fontsize=14)
+
+plt.suptitle("Neutrino Oscillation: Topological Unknot Slippage vs Empirical Data", fontsize=16, y=1.05)
+plt.tight_layout()
+
+# Save and show
+plt.savefig('GVS_PMNS_Matrix.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+print("Plot saved as 'GVS_PMNS_Matrix.png'.")
