@@ -1,0 +1,41 @@
+# CELL 3: UHECR Muon Multiplicity & Lattice Yield Limit Plot
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Energy scale of primary cosmic rays in eV
+energies = np.logspace(17, 20, 100)
+
+# Standard Model (QCD) prediction exponent (typically around 0.85 - 0.90)
+sm_exponent = 0.88
+# GVS Rigid Floor Exponent (Unpatched geometry: 1 - 1/(4*pi*eta))
+gvs_exponent = 0.907
+# Empirical Pierre Auger data point (approx 0.93)
+auger_exponent = 0.93
+
+# Calculate Muon Numbers (normalized scale)
+N_mu_SM = (energies / 1e18)**sm_exponent
+N_mu_GVS = (energies / 1e18)**gvs_exponent
+N_mu_Auger = (energies / 1e18)**auger_exponent
+
+plt.figure(figsize=(10, 6))
+plt.plot(energies, N_mu_SM, 'b--', linewidth=2, label=f'Standard Model (QCD, B~{sm_exponent})')
+plt.plot(energies, N_mu_GVS, 'r-', linewidth=3, label=f'GVS Lattice Floor (B={gvs_exponent})')
+plt.plot(energies, N_mu_Auger, 'k:', linewidth=2, label=f'Pierre Auger Data (B~{auger_exponent})')
+
+plt.xscale('log')
+plt.yscale('log')
+plt.xlabel('Primary Energy (eV)', fontsize=12)
+
+# CORRECTED LINE: Added the 'r' prefix for the raw string to fix the \mu render
+plt.ylabel(r'Relative Muon Multiplicity ($N_\mu$)', fontsize=12)
+
+plt.title('UHECR Muon Anomaly: GVS Lattice Shatter-Point vs Standard Model', fontsize=14)
+plt.axvspan(1e19, 1e20, color='red', alpha=0.1, label='Lattice Yield Limit Region')
+plt.legend(loc='upper left', fontsize=11)
+plt.grid(True, which="both", ls="--", alpha=0.5)
+
+# Save and show
+plt.savefig('GVS_UHECR_Plot.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+print("Plot saved as 'GVS_UHECR_Plot.png'.")
