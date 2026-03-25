@@ -1,5 +1,4 @@
 # Causal Lattice Elastodynamics (GVS) - Computational Appendices
-[![DOI](https://zenodo.org/badge/1181759844.svg)](https://doi.org/10.5281/zenodo.19023192)
 
 This repository contains the foundational Monte Carlo simulations and computational proxy models for the **Causal Lattice Elastodynamics (Geometric Vacuum Scaling)** framework. 
 
